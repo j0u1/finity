@@ -1,6 +1,6 @@
 {
   "name": "@j0u1/finity",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": " Lightweight finite state machine library for TypeScript",
   "author": "j0u1",
   "keywords": [
