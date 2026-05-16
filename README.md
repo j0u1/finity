@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@j0u1/finity)](https://www.npmjs.com/package/@j0u1/finity)
 [![wakatime](https://wakatime.com/badge/user/42e0f82b-2688-4a48-85af-5eedd1812f70/project/7cf65f9a-042d-4ed8-ac25-717b8b4ff28b.svg)](https://wakatime.com/badge/user/42e0f82b-2688-4a48-85af-5eedd1812f70/project/7cf65f9a-042d-4ed8-ac25-717b8b4ff28b)
+[![Socket Badge](https://badge.socket.dev/npm/package/@j0u1/finity/1.0.2)](https://badge.socket.dev/npm/package/@j0u1/finity/1.0.2)
 
 Lightweight finite state machine (FSM) library for TypeScript.
 
