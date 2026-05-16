@@ -7,6 +7,10 @@
   "scripts": {
     "build": "bun build ./index.ts --outdir ./dist --format esm --packages external"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j0u1/finity"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
