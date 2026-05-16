@@ -1,0 +1,16 @@
+{
+  "name": "@j0u1/finity",
+  "version": "0.0.1",
+  "module": "index.ts",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "bun build ./index.ts --outdir ./dist --format esm --packages external"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
