@@ -5,7 +5,9 @@
   "author": "j0u1",
   "keywords": [
     "fsm",
-    "state-machine"
+    "state-machine",
+    "finite-state-machine",
+    "fsm-library"
   ],
   "files": [
     "dist"
