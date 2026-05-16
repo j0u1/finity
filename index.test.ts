@@ -1,9 +1,27 @@
 import { test, expect } from "bun:test"
 import { createMachine } from "./index"
 
-test("начальное состояние", () => {
+test("initial state", () => {
   const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
   expect(m.current).toBe('red')
+})
+
+test("next() changes state", () => {
+  const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
   expect(m.next()).toBe('yellow')
+})
+
+test("can() returns true if transition is possible", () => {
+  const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
+  expect(m.can('yellow')).toBe(true)
+})
+
+test("can() returns false if transition is not possible", () => {
+  const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
   expect(m.can('green')).toBe(false)
+})
+
+test("next() throws if no transition exists", () => {
+  const m = createMachine({ initial: 'red', transitions: {} })
+  expect(() => m.next()).toThrow('No transition from "red"')
 })
