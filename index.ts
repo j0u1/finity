@@ -3,6 +3,13 @@ interface ConfigType {
   transitions: Record<string, string>
 }
 
+class FinityError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'FinityError'
+  }
+}
+
 export function createMachine(config: ConfigType) {
   return {
     current: config.initial,
@@ -10,7 +17,7 @@ export function createMachine(config: ConfigType) {
 
     next() {
       const nextState = this.transitions[this.current]
-      if (!nextState) throw new Error(`No transition from "${this.current}"`)
+      if (!nextState) throw new FinityError(`No transition from "${this.current}"`)
       return this.current = nextState
     },
     can(state: string) {
