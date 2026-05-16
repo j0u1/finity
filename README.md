@@ -30,8 +30,8 @@ const traffic = createMachine({
 traffic.current   // "red"
 traffic.next()    // "yellow"
 traffic.current   // "yellow"
-traffic.can("green")  // true
-traffic.can("red")    // false
+traffic.canChangeTo("green")  // true
+traffic.canChangeTo("red")    // false
 ```
 
 ## API
@@ -49,4 +49,4 @@ Returns an object with:
 
 - **`current`** — current state
 - **`next()`** — transitions to the next state, returns new state. Throws if no transition exists.
-- **`can(state)`** — returns `true` if transition to given state is possible from current state
+- **`canChangeTo(state)`** — returns `true` if transition to given state is possible from current state

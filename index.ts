@@ -20,7 +20,7 @@ export function createMachine(config: ConfigType) {
       if (!nextState) throw new FinityError(`No transition from "${this.current}"`)
       return this.current = nextState
     },
-    can(state: string) {
+    canChangeTo(state: string) {
       return this.transitions[this.current] === state
     }
   }
