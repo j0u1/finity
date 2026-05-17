@@ -6,7 +6,6 @@ Lightweight finite state machine (FSM) library for TypeScript.
 [![wakatime](https://wakatime.com/badge/user/42e0f82b-2688-4a48-85af-5eedd1812f70/project/7cf65f9a-042d-4ed8-ac25-717b8b4ff28b.svg)](https://wakatime.com/badge/user/42e0f82b-2688-4a48-85af-5eedd1812f70/project/7cf65f9a-042d-4ed8-ac25-717b8b4ff28b)
 [![Socket Badge](https://badge.socket.dev/npm/package/@j0u1/finity)](https://badge.socket.dev/npm/package/@j0u1/finity)
 
-
 ## Install
 
 ```bash
@@ -16,6 +15,8 @@ npm install @j0u1/finity
 ```
 
 ## Usage
+
+Single transition per state:
 
 ```ts
 import { createMachine } from "@j0u1/finity"
@@ -29,11 +30,27 @@ const traffic = createMachine({
   },
 })
 
-traffic.current   // "red"
-traffic.next()    // "yellow"
-traffic.current   // "yellow"
-traffic.canChangeTo("green")  // true
-traffic.canChangeTo("red")    // false
+traffic.current                 // "red"
+traffic.moveTo("yellow")        // "yellow"
+traffic.canChangeTo("green")    // true
+traffic.canChangeTo("red")      // false
+```
+
+Multiple transitions per state:
+
+```ts
+const order = createMachine({
+  initial: "pending",
+  transitions: {
+    pending: ["success", "fail"],
+    success: [],
+    fail: [],
+  },
+})
+
+order.canChangeTo("success")   // true
+order.canChangeTo("fail")      // true
+order.moveTo("success")        // "success"
 ```
 
 ## API
@@ -45,10 +62,14 @@ Creates a new state machine.
 | Parameter | Type | Description |
 |---|---|---|
 | `config.initial` | `string` | Initial state |
-| `config.transitions` | `Record<string, string>` | Map of state transitions |
+| `config.transitions` | `Record<string, string \| string[]>` | Map of state transitions |
 
 Returns an object with:
 
 - **`current`** — current state
-- **`next()`** — transitions to the next state, returns new state. Throws if no transition exists.
+- **`moveTo(state)`** — transitions to the given state. Throws if transition is not allowed.
 - **`canChangeTo(state)`** — returns `true` if transition to given state is possible from current state
+
+## License
+
+MIT

@@ -1,6 +1,6 @@
 interface ConfigType {
   initial: string,
-  transitions: Record<string, string>
+  transitions: Record<string, string | string[]>
 }
 
 class FinityError extends Error {
@@ -15,13 +15,16 @@ export function createMachine(config: ConfigType) {
     current: config.initial,
     transitions: config.transitions,
 
-    next() {
-      const nextState = this.transitions[this.current]
-      if (!nextState) throw new FinityError(`No transition from "${this.current}"`)
-      return this.current = nextState
+    moveTo(state: string) {
+      const available = this.transitions[this.current]
+      const states = Array.isArray(available) ? available : [available]
+      if (!states.includes(state)) throw new FinityError(`No transition from "${this.current}" to "${state}"`)
+      return this.current = state
     },
     canChangeTo(state: string) {
-      return this.transitions[this.current] === state
+      const available = this.transitions[this.current]
+      const states = Array.isArray(available) ? available : [available]
+      return states.includes(state)
     }
   }
 }

@@ -6,9 +6,9 @@ test("initial state", () => {
   expect(m.current).toBe('red')
 })
 
-test("next() changes state", () => {
+test("moveTo() changes state", () => {
   const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
-  expect(m.next()).toBe('yellow')
+  expect(m.moveTo('yellow')).toBe('yellow')
 })
 
 test("canChangeTo() returns true if transition is possible", () => {
@@ -21,7 +21,7 @@ test("canChangeTo() returns false if transition is not possible", () => {
   expect(m.canChangeTo('green')).toBe(false)
 })
 
-test("next() throws if no transition exists", () => {
+test("moveTo() throws if no transition exists", () => {
   const m = createMachine({ initial: 'red', transitions: {} })
-  expect(() => m.next()).toThrow('No transition from "red"')
+  expect(() => m.moveTo('yellow')).toThrow('No transition from "red"')
 })
