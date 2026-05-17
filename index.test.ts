@@ -11,14 +11,14 @@ test("next() changes state", () => {
   expect(m.next()).toBe('yellow')
 })
 
-test("can() returns true if transition is possible", () => {
+test("canChangeTo() returns true if transition is possible", () => {
   const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
-  expect(m.can('yellow')).toBe(true)
+  expect(m.canChangeTo('yellow')).toBe(true)
 })
 
-test("can() returns false if transition is not possible", () => {
+test("canChangeTo() returns false if transition is not possible", () => {
   const m = createMachine({ initial: 'red', transitions: { red: 'yellow' } })
-  expect(m.can('green')).toBe(false)
+  expect(m.canChangeTo('green')).toBe(false)
 })
 
 test("next() throws if no transition exists", () => {
